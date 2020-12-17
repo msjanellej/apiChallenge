@@ -14,12 +14,8 @@ namespace reviewapi
             var parsedList = Api.ParseInfo(yelpReviewResults);
             var result = Api.ConverttoJson(parsedList);
 
-            // need to export json file from cloud terminal to app, so that there is a file path to my credentials.
-
-            var credential = GoogleCredential.FromFile(@"<CRED_JSON_FILEPATH>").CreateScoped(ImageAnnotatorClient.DefaultScopes);
-            var channel = new Grpc.Core.Channel(ImageAnnotatorClient.DefaultEndpoint.ToString(), credential.ToChannelCredentials());
-            
-
+            string credential_path = @"C:\Users\janel\Desktop\practice\Test API\My First Project-6c75c1ef5dee.json";
+            System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credential_path);
             var client = ImageAnnotatorClient.Create();
             List<string> pictures = new List<string>();
             for (int i = 0; i < parsedList.Count; i++)
@@ -29,6 +25,7 @@ namespace reviewapi
        
             foreach (var picture in pictures)
             {
+                // working on fixing error that is in image variable. Unable  to open file from yelp
                 var image = Image.FromUri("gs://cloud-vision-codelab/" + picture);
                 var response = client.DetectFaces(image);
                 foreach (var annotation in response)
