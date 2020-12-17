@@ -37,6 +37,11 @@ namespace reviewapi
             }
             return reviewCollection;
         }
+        public static string ConverttoJson(List<Review> reviewCollection)
+        {
+            var jsonCollection = JsonConvert.SerializeObject(reviewCollection);
+            return jsonCollection;
+        }
 
     }
 }

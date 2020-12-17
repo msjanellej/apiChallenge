@@ -8,6 +8,7 @@ namespace reviewapi
         {
             var yelpReviewResults = Api.GetYelpApiData();
             var parsedList = Api.ParseInfo(yelpReviewResults);
+            var result = Api.ConverttoJson(parsedList);
         }
     }
 }
