@@ -6,7 +6,7 @@ namespace reviewapi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var yelpReviewResults = Api.GetYelpApiData();
         }
     }
 }
