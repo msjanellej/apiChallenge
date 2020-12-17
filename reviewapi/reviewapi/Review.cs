@@ -10,11 +10,12 @@ namespace reviewapi
         public string avatarUrl;
         public string rating;
         public string reviewContent;
+        public List<List<string>> joyLikelihood;
 
 
         public Review()
         {
-
+            joyLikelihood = new List<List<string>>();
 
         }
     }
