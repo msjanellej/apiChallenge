@@ -349,7 +349,7 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-#APIkeys.cs
-.APIkeys.cs
+#ApiKey.cs
+.ApiKey.cs
 
-APIkeys.cs
+ApiKey.cs

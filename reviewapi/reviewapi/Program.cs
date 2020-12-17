@@ -7,6 +7,7 @@ namespace reviewapi
         static void Main(string[] args)
         {
             var yelpReviewResults = Api.GetYelpApiData();
+            var parsedList = Api.ParseInfo(yelpReviewResults);
         }
     }
 }

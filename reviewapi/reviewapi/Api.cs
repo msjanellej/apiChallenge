@@ -23,5 +23,20 @@ namespace reviewapi
             Newtonsoft.Json.Linq.JObject result = JsonConvert.DeserializeObject<JObject>(content);
             return result;
         }
-}
+        public static List<Review> ParseInfo(JObject content)
+        {
+            List<Review> reviewCollection = new List<Review>();
+            for (int i = 0; i < 3; i++)
+            {
+                Review review = new Review();
+                review.reviewerName = content["reviews"][i]["user"]["name"].ToString();
+                review.avatarUrl = content["reviews"][i]["user"]["profile_url"].ToString();
+                review.rating = content["reviews"][i]["rating"].ToString();
+                review.reviewContent = content["reviews"][i]["text"].ToString();
+                reviewCollection.Add(review);
+            }
+            return reviewCollection;
+        }
+
+    }
 }
