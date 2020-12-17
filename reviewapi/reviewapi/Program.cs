@@ -1,4 +1,6 @@
-﻿using Google.Cloud.Vision.V1;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Vision.V1;
+using Grpc.Auth;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +14,11 @@ namespace reviewapi
             var parsedList = Api.ParseInfo(yelpReviewResults);
             var result = Api.ConverttoJson(parsedList);
 
-            //working on accessing the credentials that were created in google cloud shell
+            // need to export json file from cloud terminal to app, so that there is a file path to my credentials.
+
+            var credential = GoogleCredential.FromFile(@"<CRED_JSON_FILEPATH>").CreateScoped(ImageAnnotatorClient.DefaultScopes);
+            var channel = new Grpc.Core.Channel(ImageAnnotatorClient.DefaultEndpoint.ToString(), credential.ToChannelCredentials());
+            
 
             var client = ImageAnnotatorClient.Create();
             List<string> pictures = new List<string>();
